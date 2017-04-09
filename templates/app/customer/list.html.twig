@@ -1,0 +1,47 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}
+    Listagem de Contatos - {{ parent() }}
+{% endblock %}
+
+{% block page_header %}
+    Listagem de Contatos
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="box">
+
+            {#create#}
+            <div class="box-header">
+                <a href="{{ url('customer.create') }}" class="btn btn-app">
+                    <i class="fa fa-plus-circle">&nbsp;</i>Novo
+                </a>
+            </div>
+
+            <div class="box-body">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <th style="width: 10px">#</th>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Ações</th>
+                    </tr>
+                    {% for customer in customers %}
+                        <tr>
+                            <td>{{ customer.id }}</td>
+                            <td>{{ customer.name }}</td>
+                            <td>{{ customer.email }}</td>
+                            <td>
+                                <a href="{{ url('customer.update', {id: customer.id}) }}">Editar</a> |
+                                <a href="{{ url('customer.delete', {id: customer.id}) }}">Excluir</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
